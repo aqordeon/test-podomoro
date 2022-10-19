@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     const measure = $('select#measure')
     const ammount = $('input#num')
     const timer = $('#timer-group')
@@ -8,6 +9,8 @@ $(document).ready(function(){
 
     const getMinutes = $('input#minutes')
     const getSeconds = $('input#seconds')
+
+    const data_sessions = []
 
     var seconds = 0
     var minutes = 0
@@ -20,15 +23,17 @@ $(document).ready(function(){
 
     //Ketika klik tombol countdown
     $('button#start-button').on('click', function(){
-        if($(getMinutes).val() != '' && $(getSeconds).val() > 0) {
+        clear(interval)
+        
+        setClockSecond = $(getSeconds).val()
+        setClockMinute = $(getMinutes).val()
+        if(
+            ($(getMinutes).val() != 0 && $(getSeconds).val() != 0) ||
+            ($(getMinutes).val() != '' || $(getSeconds).val() != '') ||
+            ($(getMinutes).val() != 0 && $(getSeconds).val() == 0)
+        ) {
             clockType = 'countdown'
             startClock()
-        }
-        else if ($(ammount).val() == '') {
-            alert('Type in the Ammount')
-        }
-        else if ($(measure).val() == 0) {
-            alert('Select the Unit')
         }
     })
 
@@ -64,7 +69,7 @@ $(document).ready(function(){
     })
 
     function pad(d) {
-        return (d < 10) ? '0' + d.toString() : d.toString()
+        return (d.toString().length < 2) ? '0' + d.toString() : d.toString()
     }
 
 
@@ -76,6 +81,7 @@ $(document).ready(function(){
         seconds = 0
         minutes = 0
         hours = 0
+
 
         
         if ($(getMinutes).val() > 60) {
@@ -222,4 +228,28 @@ $(document).ready(function(){
         clearInterval(intervalID)
         console.log('cleared the interval called ' + intervalID)
     }
+
+    //Perintah tombol Plus
+    $('button#plus-button').on('click', function(){
+        var currentTime = (new Date).getHours() + ":" + (new Date).getMinutes() + ":" + (new Date).getSeconds();
+        var currentDate = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
+
+        var timerDuration = $('#minutes').val() + ":" + $('#seconds').val()
+
+        var secondss = (setClockSecond == 0 ? "" : (setClockSecond + " sec"))
+        var minutess = (setClockMinute == 0 ? "" : setClockMinute + " min ")
+        var timerTime = minutess + secondss
+
+        alert(timerTime)
+
+        data_sessions.push({
+            "started-at": currentTime + ", " + currentDate,
+            "duration": timerDuration,
+            "time": timerTime,
+            "notes": "makan ayam",
+        })
+
+        localStorage.setItem('data-sessions', JSON.stringify(data_sessions))
+        
+    })
 })
