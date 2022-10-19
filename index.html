@@ -5,27 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test MTarget</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <main>
         <div class="left-content">
             <div class="timer-button">
-                25:00
+                <img src="assets/timer.png" alt="" srcset="">
+                <span>25:00</span>
             </div>
             <div class="button-group">
-                <button class="add-delete-button">+</button>
-                <button class="add-delete-button">-</button>
-                <button class="start-button">|></button>
+                <button class="add-delete-button"><i class="fa-solid fa-minus"></i></button>
+                <button class="add-delete-button"><i class="fa-solid fa-plus"></i></button>
+                <button class="start-button"><img src="assets/play-button.png" alt="" srcset=""></button>
             </div>
         </div>
         <div class="right-content">
             <div class="action-group">
                 <div class="download-button">
-                    Download logs
+                    <i class="fa-solid fa-download"></i> Download logs
                 </div>
                 <div class="deleteall-button">
-                    Delete all sessions
+                    <i class="fa-regular fa-trash-can"></i> Delete all sessions
                 </div>
             </div>
             <div class="table-group">
@@ -40,10 +44,19 @@
                         <td>1</td>
                         <td>
                             16:28:23, Sept 1, Thu<br>
-                            <span>(16 sec ago)</span>
+                            <span>(<b>16</b> sec ago)</span>
                         </td>
-                        <td>00:07 / 25 min</td>
-                        <td>makan nasi ayam</td>
+                        <td><b>00:07</b> / 25 min</td>
+                        <td class="notes-input"><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            16:28:23, Sept 1, Thu<br>
+                            <span>(<b>16</b> sec ago)</span>
+                        </td>
+                        <td><b>00:07</b> / 25 min</td>
+                        <td class="notes-input"><input type="text"></td>
                     </tr>
                 </table>
             </div>
