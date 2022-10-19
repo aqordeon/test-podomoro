@@ -31,7 +31,7 @@ main .left-content {
   height: 55vh;
   width: 100%;
 }
-main .left-content .timer-button {
+main .left-content .timer-group {
   width: 250px;
   height: 250px;
   border-radius: 50%;
@@ -41,12 +41,12 @@ main .left-content .timer-button {
   font-size: 3em;
   position: relative;
 }
-main .left-content .timer-button img {
+main .left-content .timer-group img {
   width: 250px;
   position: absolute;
   z-index: -5;
 }
-main .left-content .timer-button span {
+main .left-content .timer-group span {
   color: white;
 }
 main .left-content .button-group {

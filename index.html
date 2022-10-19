@@ -8,19 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
     
 </head>
 <body>
     <main>
         <div class="left-content">
-            <div class="timer-button">
+            <div class="timer-group">
                 <img src="assets/timer.png" alt="" srcset="">
-                <span>25:00</span>
+                <input type="number" name="" id="minutes" min="00" value="00">
+                <span>:</span>
+                <input type="number" name="" id="seconds" min="00" max="60" value="00">
             </div>
             <div class="button-group">
                 <button class="add-delete-button"><i class="fa-solid fa-minus"></i></button>
                 <button class="add-delete-button"><i class="fa-solid fa-plus"></i></button>
-                <button class="start-button"><img src="assets/play-button.png" alt="" srcset=""></button>
+                <button class="start-button" id="start-button"><img src="assets/play-button.png" alt="" srcset=""></button>
             </div>
         </div>
         <div class="right-content">
