@@ -235,14 +235,16 @@ $(document).ready(function(){
     //Perintah tombol Plus
     $('button#plus-button').on('click', function(){
         currentHours = (new Date).getHours()
-        currenMinutes = (new Date).getMinutes()
+        currentMinutes = (new Date).getMinutes()
         currentSeconds = (new Date).getSeconds()
         currentYears = (new Date).getFullYear()
         currentMonths = (new Date).getMonth()
         currentDate = (new Date).getDate()
-        timeago = new Date()
+        timeago = `${currentYears}-${currentMonths+1}-${currentDate} ${currentHours}:${currentMinutes}:${currentSeconds}`
 
-        var currentTime =  currentHours + ":" + currenMinutes + ":" + currentSeconds;
+        alert(timeago)
+
+        var currentTime =  currentHours + ":" + currentMinutes + ":" + currentSeconds;
         var currentDates = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
 
 
@@ -257,7 +259,7 @@ $(document).ready(function(){
             "duration": timerDuration,
             "time_set": timeago,
             "time": timerTime,
-            "notes": "makan ayam",
+            "notes": "",
         })
 
         localStorage.setItem('data-sessions', JSON.stringify(data_sessions))
@@ -265,27 +267,6 @@ $(document).ready(function(){
     })
     
 })
-
-$(function() {
-    var data_sessions_storage = JSON.parse(localStorage.getItem('data-sessions')) || []
-    for(let i = 0; i < data_sessions_storage.length; i++){
-        $('tbody').append(`
-            <tr>
-                <td>${i+1}</td>
-                <td>
-                    ${data_sessions_storage[i].started_at}<br>
-                    <span>${jQuery.timeago(data_sessions_storage[i].time_set)}</span>
-                </td>
-                <td><b>${data_sessions_storage[i].duration}</b> / ${data_sessions_storage[i].time}</td>
-                <td class='notes-input'><input type='text' value='${data_sessions_storage[i].notes}'></td>
-            </tr>
-        `)
-        // alert(data_sessions_storage[i].notes)
-
-    }
-});
-
-
 
 $(window).on('storage', function (e) {
     alert(e.originalEvent.key, e.originalEvent.newValue);

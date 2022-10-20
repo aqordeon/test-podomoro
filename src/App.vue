@@ -1,5 +1,20 @@
 <script setup>
+  import { ref, onMounted, computed, watch } from "vue";
+  import moment from 'moment';
 
+  // alert(moment(timePast).fromNow())
+
+  const data_sessions1 = ref([]);
+
+  watch(data_sessions1, newVal => {
+      localStorage.setItem('data-sessions', JSON.stringify(newVal))
+    }, { deep: true }) 
+
+  onMounted(() => {
+    data_sessions1.value = JSON.parse(localStorage.getItem('data-sessions')) || []
+  });
+
+  // alert(data_sessions1)
 </script>
 
 <template>
@@ -27,13 +42,27 @@
       </div>
       <div class="table-group">
           <table class="table-data" id="#table-data">
-              <tr>
+              <thead>
+                <tr>
                   <th>#</th>
                   <th>Started at</th>
                   <th>Duration</th>
                   <th>Notes</th>
-              </tr>
-
+                </tr>
+              </thead>
+              <tbody v-for="(data_session, index) in data_sessions1" v-bind:key="data_session.id">
+                <tr>
+                  <td>{{index+1}}</td>
+                  <td>
+                      {{data_session.started_at}}<br>
+                      <span>{{moment(data_session.time_set).fromNow()}}</span>
+                  </td>
+                  <td><b>{{data_session.duration}}</b> / {{data_session.time}}</td>
+                  <td class='notes-input'>
+                    <input type='text' v-model="data_session.notes" placeholder="Eat popcorn">
+                  </td>
+                </tr>
+              </tbody>
           </table>
       </div>
   </div>
