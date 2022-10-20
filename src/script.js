@@ -284,7 +284,7 @@ $(function() {
 
     }
 });
-  
+
 
 
 $(window).on('storage', function (e) {
