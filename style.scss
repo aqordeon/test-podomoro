@@ -1,5 +1,6 @@
-$colorbtn1: #E0F19B;
-$colorbtn1dark: #cadc83;
+$green1: #E0F19B;
+$green2: #cadc83;
+$green3: #b8ca71;
 
 %pointer {
     cursor: pointer;
@@ -69,16 +70,12 @@ main {
             .start-button {
                 width: 100px;
                 height: 40px;
-                background-color: $colorbtn1;
                 img {
                     width: 20px;
                     height: 20px;
                 }
             }
 
-            .start-button:active {
-                background-color: red;
-            }
 
             .add-delete-button, .start-button {
                 border-radius: 250px;
@@ -91,11 +88,10 @@ main {
                 justify-content: center;
             }
 
-            .start-button:hover {
-                background-color: $colorbtn1dark;
-            }
         }
     }
+
+
 
     .right-content {
         flex: 3;
@@ -113,16 +109,11 @@ main {
             font-weight: 600;
 
             .download-button {
-                background-color: $colorbtn1;
                 margin-right: 15px;
             }
 
-            .download-button:hover {
-                background-color: $colorbtn1dark;
-                @extend %pointer;
-            }
-
             .download-button, .deleteall-button {
+                @extend %pointer;
                 border-radius: 50px;
                 padding: 10px 25px 10px 25px;
                 display: flex;
@@ -196,5 +187,15 @@ main {
 
             }
         }
+    }
+
+    .green-button{
+        background-color: $green1;
+    }
+    .green-button:hover {
+        background-color: $green2;
+    }
+    .green-button:active {
+        background-color: $green3;
     }
 }

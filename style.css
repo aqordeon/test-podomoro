@@ -1,4 +1,4 @@
-main .right-content .action-group .download-button:hover {
+main .right-content .action-group .download-button, main .right-content .action-group .deleteall-button {
   cursor: pointer;
 }
 
@@ -63,14 +63,10 @@ main .left-content .button-group .add-delete-button {
 main .left-content .button-group .start-button {
   width: 100px;
   height: 40px;
-  background-color: #E0F19B;
 }
 main .left-content .button-group .start-button img {
   width: 20px;
   height: 20px;
-}
-main .left-content .button-group .start-button:active {
-  background-color: red;
 }
 main .left-content .button-group .add-delete-button, main .left-content .button-group .start-button {
   border-radius: 250px;
@@ -81,9 +77,6 @@ main .left-content .button-group .add-delete-button, main .left-content .button-
   display: flex;
   align-items: center;
   justify-content: center;
-}
-main .left-content .button-group .start-button:hover {
-  background-color: #cadc83;
 }
 main .right-content {
   flex: 3;
@@ -101,11 +94,7 @@ main .right-content .action-group {
   font-weight: 600;
 }
 main .right-content .action-group .download-button {
-  background-color: #E0F19B;
   margin-right: 15px;
-}
-main .right-content .action-group .download-button:hover {
-  background-color: #cadc83;
 }
 main .right-content .action-group .download-button, main .right-content .action-group .deleteall-button {
   border-radius: 50px;
@@ -168,6 +157,15 @@ main .right-content .table-group .table-data tr .notes-input, main .right-conten
 }
 main .right-content .table-group .table-data tr:not(:first-child):hover {
   background-color: rgb(237, 237, 237);
+}
+main .green-button {
+  background-color: #E0F19B;
+}
+main .green-button:hover {
+  background-color: #cadc83;
+}
+main .green-button:active {
+  background-color: #b8ca71;
 }
 
 /*# sourceMappingURL=style.css.map */

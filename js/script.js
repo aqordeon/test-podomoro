@@ -28,12 +28,15 @@ $(document).ready(function(){
         setClockSecond = $(getSeconds).val()
         setClockMinute = $(getMinutes).val()
         if(
-            ($(getMinutes).val() != 0 && $(getSeconds).val() != 0) ||
-            ($(getMinutes).val() != '' || $(getSeconds).val() != '') ||
-            ($(getMinutes).val() != 0 && $(getSeconds).val() == 0)
+            ($(getMinutes).val() >= 0 && $(getSeconds).val() > 0) ||
+            ($(getMinutes).val() > 0 && $(getSeconds).val() >= 0)
         ) {
             clockType = 'countdown'
             startClock()
+        }else if(($(getMinutes).val() != '' || $(getSeconds).val() != '')){
+            alert("format salah")
+        }else{
+            alert("terjadi kesalahan")
         }
     })
 
@@ -231,8 +234,17 @@ $(document).ready(function(){
 
     //Perintah tombol Plus
     $('button#plus-button').on('click', function(){
-        var currentTime = (new Date).getHours() + ":" + (new Date).getMinutes() + ":" + (new Date).getSeconds();
-        var currentDate = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
+        currentHours = (new Date).getHours()
+        currenMinutes = (new Date).getMinutes()
+        currentSeconds = (new Date).getSeconds()
+        currentYears = (new Date).getFullYear()
+        currentMonths = (new Date).getMonth()
+        currentDate = (new Date).getDate()
+        timeago = new Date()
+
+        var currentTime =  currentHours + ":" + currenMinutes + ":" + currentSeconds;
+        var currentDates = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
+
 
         var timerDuration = $('#minutes').val() + ":" + $('#seconds').val()
 
@@ -240,11 +252,10 @@ $(document).ready(function(){
         var minutess = (setClockMinute == 0 ? "" : setClockMinute + " min ")
         var timerTime = minutess + secondss
 
-        alert(timerTime)
-
         data_sessions.push({
-            "started-at": currentTime + ", " + currentDate,
+            "started_at": currentTime + ", " + currentDates,
             "duration": timerDuration,
+            "time_set": timeago,
             "time": timerTime,
             "notes": "makan ayam",
         })
@@ -252,4 +263,30 @@ $(document).ready(function(){
         localStorage.setItem('data-sessions', JSON.stringify(data_sessions))
         
     })
+    
 })
+
+$(function() {
+    var data_sessions_storage = JSON.parse(localStorage.getItem('data-sessions')) || []
+    for(let i = 0; i < data_sessions_storage.length; i++){
+        $('tbody').append(`
+            <tr>
+                <td>${i+1}</td>
+                <td>
+                    ${data_sessions_storage[i].started_at}<br>
+                    <span>${jQuery.timeago(data_sessions_storage[i].time_set)}</span>
+                </td>
+                <td><b>${data_sessions_storage[i].duration}</b> / ${data_sessions_storage[i].time}</td>
+                <td class='notes-input'><input type='text' value='${data_sessions_storage[i].notes}'></td>
+            </tr>
+        `)
+        // alert(data_sessions_storage[i].notes)
+
+    }
+});
+  
+
+
+$(window).on('storage', function (e) {
+    alert(e.originalEvent.key, e.originalEvent.newValue);
+});
