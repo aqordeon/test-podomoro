@@ -128,6 +128,10 @@ $(document).ready(function(){
         hasStarted = false
         hasEnded = false
 
+        setClockSecond = false
+        setClockMinute = false
+        
+
         seconds = 0
         minutes = 0
         hours = 0
@@ -234,35 +238,39 @@ $(document).ready(function(){
 
     //Perintah tombol Plus
     $('button#plus-button').on('click', function(){
-        currentHours = (new Date).getHours()
-        currentMinutes = (new Date).getMinutes()
-        currentSeconds = (new Date).getSeconds()
-        currentYears = (new Date).getFullYear()
-        currentMonths = (new Date).getMonth()
-        currentDate = (new Date).getDate()
-        timeago = `${currentYears}-${currentMonths+1}-${currentDate} ${currentHours}:${currentMinutes}:${currentSeconds}`
 
-        alert(timeago)
+        if(setClockSecond && setClockMinute){
+            currentHours = (new Date).getHours()
+            currentMinutes = (new Date).getMinutes()
+            currentSeconds = (new Date).getSeconds()
+            currentYears = (new Date).getFullYear()
+            currentMonths = (new Date).getMonth()
+            currentDate = (new Date).getDate()
+            
+            var currentTime =  currentHours + ":" + currentMinutes + ":" + currentSeconds;
+            var currentDates = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
+            
+            timeago = `${currentYears}-${currentMonths+1}-${currentDate} ${currentTime}`
+    
+            var timerDuration = $('#minutes').val() + ":" + $('#seconds').val()
+    
+            var secondss = (setClockSecond == 0 ? "" : (setClockSecond + " sec"))
+            var minutess = (setClockMinute == 0 ? "" : setClockMinute + " min ")
+            var timerTime = minutess + secondss
+    
+            data_sessions.push({
+                "started_at": currentTime + ", " + currentDates,
+                "duration": timerDuration,
+                "time_set": timeago,
+                "time": timerTime,
+                "notes": "",
+            })
+    
+            localStorage.setItem('data-sessions', JSON.stringify(data_sessions))
+        }else{
+            alert("Timer has not been set.")
+        }
 
-        var currentTime =  currentHours + ":" + currentMinutes + ":" + currentSeconds;
-        var currentDates = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
-
-
-        var timerDuration = $('#minutes').val() + ":" + $('#seconds').val()
-
-        var secondss = (setClockSecond == 0 ? "" : (setClockSecond + " sec"))
-        var minutess = (setClockMinute == 0 ? "" : setClockMinute + " min ")
-        var timerTime = minutess + secondss
-
-        data_sessions.push({
-            "started_at": currentTime + ", " + currentDates,
-            "duration": timerDuration,
-            "time_set": timeago,
-            "time": timerTime,
-            "notes": "",
-        })
-
-        localStorage.setItem('data-sessions', JSON.stringify(data_sessions))
         
     })
     
