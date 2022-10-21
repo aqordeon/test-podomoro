@@ -16,8 +16,10 @@ $(document).ready(function(){
     var minutes = 0
     var hours = 0
 
-    var interval = null;
+    var setClockSecond = false
+    var setClockMinute = false
 
+    var interval = null;
     var clockType = undefined;
 
 
@@ -240,17 +242,17 @@ $(document).ready(function(){
     $('button#plus-button').on('click', function(){
 
         if(setClockSecond && setClockMinute){
-            currentHours = (new Date).getHours()
-            currentMinutes = (new Date).getMinutes()
-            currentSeconds = (new Date).getSeconds()
-            currentYears = (new Date).getFullYear()
-            currentMonths = (new Date).getMonth()
-            currentDate = (new Date).getDate()
+            var currentHours = (new Date).getHours()
+            var currentMinutes = (new Date).getMinutes()
+            var currentSeconds = (new Date).getSeconds()
+            var currentYears = (new Date).getFullYear()
+            var currentMonths = (new Date).getMonth()
+            var currentDate = (new Date).getDate()
             
             var currentTime =  currentHours + ":" + currentMinutes + ":" + currentSeconds;
             var currentDates = (new Date).toLocaleString('en-us', {month: 'short'}) + " " + (new Date).toLocaleString('en-us', {day: 'numeric'}) + ", " + (new Date).toLocaleString('en-us', {weekday: 'short'})
             
-            timeago = `${currentYears}-${currentMonths+1}-${currentDate} ${currentTime}`
+            var timeago = `${currentYears}-${currentMonths+1}-${currentDate} ${currentTime}`
     
             var timerDuration = $('#minutes').val() + ":" + $('#seconds').val()
     
