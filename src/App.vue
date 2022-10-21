@@ -1,18 +1,20 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import moment from "moment";
-import * as htmlToImage from 'html-to-image';
-import { toJpeg } from 'html-to-image';
+import * as htmlToImage from "html-to-image";
+import { toJpeg } from "html-to-image";
+// import lottie from 'lottie-web';
+// import { defineElement } from 'lord-icon-element';
 
 function downloadObject() {
-  alert(document.getElementsByClassName('table-group')[0])
-  htmlToImage.toJpeg(document.getElementById('table-data'), { quality: 0.95 })
-  .then(function (dataUrl) {
-    var link = document.createElement('a');
-    link.download = 'logs.jpeg';
-    link.href = dataUrl;
-    link.click();
-  });
+    htmlToImage
+        .toJpeg(document.getElementById("table-data"), { quality: 0.95 })
+        .then(function (dataUrl) {
+            var link = document.createElement("a");
+            link.download = "logs.jpeg";
+            link.href = dataUrl;
+            link.click();
+        });
 }
 const data_sessions1 = ref([]);
 
@@ -28,7 +30,6 @@ onMounted(() => {
     data_sessions1.value =
         JSON.parse(localStorage.getItem("data-sessions")) || [];
 });
-
 </script>
 
 <template>
@@ -72,7 +73,16 @@ onMounted(() => {
                 <i class="fa-solid fa-download"></i> Download logs
             </div>
             <div class="deleteall-button" onclick="deleteAll()">
-                <i class="fa-regular fa-trash-can"></i> Delete all sessions
+                <lord-icon
+                    src="https://cdn.lordicon.com/gsqxdxog.json"
+                    trigger="click"
+                    target=".deleteall-button"
+                    colors="primary:#121331,secondary:#121331"
+                    stroke="85"
+                    state="hover-empty"
+                >
+                </lord-icon>
+                Delete all sessions
             </div>
         </div>
         <div class="table-group">

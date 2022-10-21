@@ -233,7 +233,7 @@ $(document).ready(function(){
     //Perintah clear
     function clear(intervalID) {
         clearInterval(intervalID)
-        console.log('cleared the interval called ' + intervalID)
+        // console.log('cleared the interval called ' + intervalID)
     }
 
     //Perintah tombol Plus

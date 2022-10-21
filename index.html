@@ -11,13 +11,17 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="src/script.js" type="text/javascript"></script>
     <script src="https://timeago.yarp.com/jquery.timeago.js" type="text/javascript"></script>
+    <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script>
       function deleteAll(){
-          localStorage.removeItem("data-sessions") 
+        document.getElementById("trash-button").src="src/assets/trash1.png";
+        document.getElementById("trash-button").src="src/assets/trash-animated1.gif";
+        alert("===========")
+        localStorage.removeItem("data-sessions") 
       }
   </script>
   </body>
