@@ -1,0 +1,47 @@
+/* Tablet */
+@media all and (max-width: 1000px) {
+    body {
+        padding: 50px 75px;
+        font-size: 11px;
+
+    }
+}
+
+
+/* Smartphone */
+@media all and (max-width: 670px) {
+    #app {
+        flex-direction: column;
+
+        .left-content {
+            flex-direction: row;
+            margin-bottom: 30px;
+            .button-group {
+                flex-direction: column;
+
+                .add-delete-button{
+                    padding: 30px;
+                    font-size: 1.2em;
+                    margin-bottom: 20px;
+                }
+
+                .start-button{
+                    padding: 20px;
+                }
+            }
+        }
+
+        .right-content {
+            .table-group {
+                margin-top: 10px;
+            }
+
+            .action-group {
+                font-size: 1em;
+            }
+        }
+
+
+    }
+
+}

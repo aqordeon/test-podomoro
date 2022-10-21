@@ -52,7 +52,7 @@ onMounted(() => {
                 id="seconds"
                 min="00"
                 max="60"
-                value="00"
+                value="10"
             />
         </div>
         <div class="button-group">
